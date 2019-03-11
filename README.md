@@ -74,6 +74,63 @@ If you want to install Perl 6 too and learn a complete new language I recommend 
 
 ---
 
-#### Important things
+#### Blocks
 
 1. `:D` => when used after a type constraint (Int :D for instance) it will force to use defined values (to avoid pass Int as an argument)
+
+2. The first block can not return a value:
+   ~~~
+   my $callable-block = -> Int:D $argument { ... } 
+   my $simple-subrutine = sub subname (Int:D $argument) {return "e"; } # or skipping the variable
+   sub subname (Int:D $argument) {return "e"; }
+   subname(2); subname.(2);
+   subname 2; # only use this notation if it wont confuse the compiler
+   ~~~
+
+3. **WhateverCode**:
+   ~~~
+   my $sum = * + *;
+   put $sum( 135, 2 ); # 137
+   ~~~
+
+4. Making subsets:
+   ~~~
+   subset PositiveInt of Int where { $^a > 0 }; # you can replace $^a for *
+   my PositiveInt $x = -5;
+   put $x;
+   # other use for where clause
+   sub add-numbers ( $n where * > 0, $m where * > 0 ) {
+      $n + $m
+   }
+   ~~~
+
+#### Positionals
+
+1. Lists:
+   ~~~
+   my $empty-list = List.new; # or simply () or special object Empty
+   # or List.new: 1,2,3 or List.new(1,2,3) to initalize the list
+   # or $(1,2,3)
+   put 'Elements: ', $empty-list.elems; # Elements: 0
+   ~~~
+ 
+ 2. To break a String into an array (separating it by whitespaces):
+   ~~~
+   my $butterfly-genus = qw<Hamadryas Sostrata Junonia>;
+   put 'Elements: ', $butterfly-genus.elems; # Elements: 3
+   # or equivalent:
+   my $b = <Hamad feufhe f euhe>
+   ~~~
+   
+ 3. To create a list made of repeated elements:
+  ~~~
+  my $counts = 0 xx 5; # ( 0, 0, 0, 0, 0 )
+  ~~~
+ 4. `.join: ', '`
+ 5. Iterates a list:
+   ~~~
+   for $butterfly-genus.List { # or @butterfly-genus
+      put "Found genus $_";
+   }
+   ~~~
+ 6. `.words` => into words`.comb` => into characters
