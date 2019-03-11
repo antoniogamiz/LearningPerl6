@@ -72,6 +72,8 @@ Or visit [docs](https://docs.perl6.org/)
 
 If you want to install Perl 6 too and learn a complete new language I recommend to check this out: https://github.com/nxadm/rakudo-pkg#debian-and-ubuntu
 
-```
+---
 
-```
+#### Important things
+
+1. `:D` => when used after a type constraint (Int :D for instance) it will force to use defined values (to avoid pass Int as an argument)
