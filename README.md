@@ -162,3 +162,34 @@ If you want to install Perl 6 too and learn a complete new language I recommend 
    my $sublists = $list.rotor: 2;
    say $sublists; # ((1 2) (3 4) (5 6) (7 8) (9 10))
  ~~~
+
+#### Errors!
+
+~~~
+try {
+   my $m = 'Hello';
+   my $value = +$m;
+   put "value is {$value.^name}";
+}
+put "ERROR: $!" if $!;
+put 'Got to the end.';
+~~~
+
+~~~
+put 'Problem was ', do given $! {
+   when X::Str::Numeric { ... }
+   default { ... }
+   };
+~~~
+
+~~~
+try {
+   CATCH {
+      default { put "Caught {.^name} with ｢{.message}｣" }
+   }
+   my $m = 'Hello';
+   my $value = +$m;
+   put "value is {$value.^name}";
+}
+put "Got to the end.";
+~~~
