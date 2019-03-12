@@ -134,3 +134,31 @@ If you want to install Perl 6 too and learn a complete new language I recommend 
    }
    ~~~
  6. `.words` => into words`.comb` => into characters
+ 7. Ranges: 
+ ~~~
+   my $digit-range = 0 .. 10;
+   my $digit-range = 0 ^.. 10; # exclude 0 ( 1..10 )
+   my $digit-range = 0 ..^ 10; # exclude 10 ( 0..9 )
+   my $digit-range = 0 ^..^ 10; # exclude 0 and 10 ( 1..9 )
+   my $digit-range = ^10; # Same as 0 ..^ 10
+ ~~~
+ 8. Flaten:
+ ~~~
+   my $list = ( 1, 2, ('a', 'b') );
+   put $list.elems; # 3
+   my $flat = $list.flat;
+   put $flat.elems; # 4
+   say $flat; # (1 2 a b)
+ ~~~
+ 9. Rotor:
+ ~~~
+   my $list = 1 .. 10;
+   my $sublists = $list.rotor: 2;
+   say $sublists; # ((1 2) (3 4) (5 6) (7 8) (9 10))
+ ~~~
+ 10. Grep
+ ~~~
+   my $list = 1 .. 10;
+   my $sublists = $list.rotor: 2;
+   say $sublists; # ((1 2) (3 4) (5 6) (7 8) (9 10))
+ ~~~
